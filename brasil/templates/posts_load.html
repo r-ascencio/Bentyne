@@ -1,0 +1,20 @@
+
+{% for post in posts %}
+{% if post.published %}
+<h4>
+  <a href="{% url brasil_detail post.slug %}">
+    {{ post.title }}
+  </a>
+</h4>
+<p>
+  <span class="{% if d_class %}{{d_class}}{% endif %}">
+    {{post.creation_date|date:"SHORT_DATE_FORMAT"}}
+  </span>
+</p>
+<p class="{% if p_class %}{{p_class}}{% endif %}">
+  {{post.body|safe|truncatewords:10}}
+</p>
+<hr/>
+{% endif %}
+{% endfor %}
+<a href="{% url brasil_index %}"> View more...</a>

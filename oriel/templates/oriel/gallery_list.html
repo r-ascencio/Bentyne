@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+{% load media %}
+{% block content %}
+<div class="two columns offset-by-ten">
+  <div class="row">
+    <a href="/skylark/oriel/add" class="button">Add</a>
+  </div>
+</div>
+<hr />
+<div class="ten columns">
+  {% for gallery in galleries  %}
+  <div class="panel">
+    <div class="row">
+      <div class="one columns prefix">
+        <a href="/skylark/oriel/show/{{gallery.slug}}">
+          <img src="{% media_url 'img/gallery-icon.png'%}" alt=""/>
+        </a>
+      </div>
+      <div class="four prefix columns">
+        <a href="/skylark/oriel/{{gallery.slug}}/">
+          {{gallery.name}}
+        </a>
+      </div>
+      <div class="six columns prefix end">
+        {{gallery.description|truncatewords:4}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

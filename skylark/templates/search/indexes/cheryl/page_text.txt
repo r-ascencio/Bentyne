@@ -1,0 +1,6 @@
+{{object.title}}
+{{object.url}}
+{{object.body}}
+{% if resquest.user.is_authendticated %}
+{{ object.id }}
+{% endif  %}

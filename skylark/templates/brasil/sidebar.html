@@ -1,0 +1,38 @@
+{% load media %}
+<div class="two columns float  right">
+  <style type="text/css">
+    .second-item{
+      position: fixed;
+    }
+  </style>
+  <div class="second-item">
+    <a href="{% if post %}{% url brasil_detail post.slug %}
+      {% else %}{% url brasil_index  %}{% endif %} ">
+      <img src="{% media_url 'img/blog/seeitoninternet.png'%}" alt="" />
+          <hr/>
+          <center>
+            <p>
+            Preview
+            </p>
+          </center>
+        </a>
+        <a href="/skylark/brasil/list/">
+          <img src="{% media_url 'img/blog/edit_post.png'%}" alt="" />
+          <hr />
+          <center>
+            <p>
+              Edit Posts
+            </p>
+          </a>
+    </center>
+    <a href="/skylark/brasil/tags/">
+      <img src="{% media_url 'img/blog/tags.png' %}" alt="" />
+      <hr />
+      <center>
+        <p>
+          Sort by tags
+        </p>
+      </center>
+    </a>
+  </div>
+</div>

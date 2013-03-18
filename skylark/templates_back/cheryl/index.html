@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en">
+{% load media  %}
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+  {% include_media 'foundation.css'  %}
+</head>
+<body>
+  {% for section in sections %}
+  <h1>
+    <a href="/cheryl/section/{{section.title}}">
+      {{section.title}} <-- section
+    </a>
+  </h1>
+  {% endfor  %}
+  {% for page in pages %}
+  <h1>
+      {{page.title}} <-- page
+  </h1>
+  {% endfor  %}
+</body>
+</html>

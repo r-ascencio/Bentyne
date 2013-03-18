@@ -1,0 +1,26 @@
+{% extends "base-folio.html" %}
+{% load bentyne %}
+{% load media %}
+{% include_media 'foundation.css' %}
+{% block content %}
+<div class="body">
+  <div class="container">
+  	<div class="row">
+      <div class="four columns">
+        {% content "primer-contenido"  %}
+      </div>
+      <div class="four columns">
+        {% gallery_slider "henry"  %}
+      </div>
+      <div class="four columns">
+        {% content "hola" %}
+      </div>
+  	</div>
+    <div class="row">
+      <div class="twelve columns">
+        {{page.body|safe}}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

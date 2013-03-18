@@ -1,0 +1,43 @@
+{% load mptt_tags  %}
+<script type="text/javascript">
+var json =
+[
+{% recursetree nodes %}
+{
+    label: "{{ node.title }}",
+    url: "{{ node.url }}",
+    id: "{{ node.id }}",
+    children: [{{ children }}]
+},
+{% endrecursetree %}
+];
+
+$('#test').tree({
+    data: json,
+    autoOpen: true,
+    dragAndDrop: false
+});
+
+$('#test').bind(
+    'tree.click',
+    function(event) {
+        var node = event.node;
+        $('#modal-delete').attr({
+          href: '/skylark/cheryl/delete/' + node.id + '/'
+          });
+        $('#modal-edit').attr({
+          href: '/skylark/cheryl/edit/' + node.id + '/'
+          })
+        $('#modal-view').attr({
+              href: '/'+node.url+'/'
+          })
+        $('#id-page').text(node.name)
+        $('#pageActions').reveal({
+            animation: 'fadeAndPop',
+            animationSpeed: 900,
+            closeOnBackgroundClick: false,
+            dismissModalClass: 'close-reveal-modal'
+          });
+    }
+);
+</script>

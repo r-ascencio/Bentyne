@@ -1,0 +1,16 @@
+{% extends "base-folio.html" %}
+{% load bentyne %}
+{% block content %}
+<div class="body">
+  <div class="body_resize">
+    <div class="right">
+      <div class="bg"></div>
+      {% gallery_slider "services" "bar" %}
+    </div>
+    <div class="left">
+      {% page_menu "about" %}
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+{% endblock %}

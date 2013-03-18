@@ -1,0 +1,48 @@
+{% extends "base-folio.html" %}
+{% load bentyne %}
+{% block content %}
+<div class="main">
+  <div class="container" style="background-color:#212121">
+    <div class="row">
+      <div class="nine columns centered">
+        {% gallery_show "ff" %}
+      </div>
+    </div>
+  </div>
+  <div class="clr"></div>
+  <div class="bloga_resize">
+    <div class="bloga_resizee">
+      <div class="bloga">
+        <div class="row">
+          <div class="four columns">
+            {% content "three" %}
+          </div>
+        </div>
+      </div>
+      <div class="bloga">
+        {% content "papa" %}
+      </div>
+      <div class="bloga">
+        {% content "support" %}
+      </div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="clr"></div>
+  <div class="body">
+    <div class="body_resize">
+      <div class="right">
+        {{ page.body|safe }}
+        <div class="bg"></div>
+        <img src="/static/images/img_2.jpg" alt="picture" width="67" height="67" />
+          {% content "pablo" %}
+      </div>
+      <div class="left">
+        <h2> {% blog_name  %}  </h2>
+        {% posted_lately "3" %}
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

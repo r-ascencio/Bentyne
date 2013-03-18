@@ -1,0 +1,58 @@
+{%extends "base.html"%}
+{% block content %}
+{% load media %}
+<div class="ten columns">
+  <div class="row">
+    <div class="two columns">
+        <a href="/skylark/oriel/" class="button success">
+          <img src="{% media_url 'img/back.png' %}" alt="upload images" />
+        </a>
+    </div>
+    <div class="seven columns">
+      <h2>
+        {{gallery.name}}
+      </h2>
+    </div>
+    <div class="two columns">
+        <a class="button secondary" href="/skylark/oriel/upload/{{gallery.slug}}/">
+          <img src="{% media_url 'img/oriel/upload.png' %}" alt="upload images" />
+        </a>
+    </div>
+  </div>
+  <p>
+    {{gallery.description}}
+  </p>
+  <div class="row">
+    <ul class="block-grid three-up">
+      {% for image in images  %}
+      <li>
+        <div class="nine columns centered">
+          <div href="#" class="small secondary button split dropdown">
+            <a href="{{image.file.url}}">
+              {% if image.name %}
+              {{image.name|truncatewords:2}}
+              {% else %}
+              Id: {{image.id}}
+              {% endif %}
+            </a>
+            <span></span>
+            <ul>
+              <li><a href="/skylark/oriel/picture/{{image.id}}">Edit</a></li>
+              <li class="divider"></li>
+              <li><a href="/skylark/oriel/delete/picture/{{image.id}}/">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </table>
+      <img src="{{image.file.url}}" height="200" alt="{{image.slug}}" />
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+  $(document).foundationButtons();
+</script>
+{% endblock %}

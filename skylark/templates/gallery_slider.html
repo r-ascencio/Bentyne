@@ -1,0 +1,37 @@
+{% load media %}
+
+{% include_media 'nivo.css' %}
+{% include_media 'nivo.js' %}
+
+{% if theme %}
+{% ifequal theme 'default' %}
+{% include_media 'nivo-default.css' %}
+{% else %}
+{% ifequal theme 'dark' %}
+{% include_media 'nivo-dark.css' %}
+{% else %}
+{% ifequal theme 'bar' %}
+{% include_media 'nivo-bar.css' %}
+{% else %}
+{% ifequal theme 'light' %}
+{% include_media 'nivo-light.css' %}
+{% endifequal %}
+{% endifequal %}
+{% endifequal %}
+{% endifequal %}
+
+{% endif %}
+<div class="slider-wrapper theme-{{theme}}">
+    <div id="slider" class="nivoSlider">
+    	{% for picture in pictures %}
+    	<img src="{{picture.file.url}}"
+    		title="{% if picture.name %} {{picture.description}} {% else %} {{gallery.title}} {% endif %}"/>
+        {% endfor %}
+    </div>
+</div>
+
+<script type="text/javascript">
+$(window).load(function() {
+    $('#slider').nivoSlider();
+});
+</script>

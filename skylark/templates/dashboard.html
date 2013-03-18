@@ -1,0 +1,86 @@
+{% extends "base.html"  %}
+{% load media %}
+{% block content  %}
+<div class="ten columns">
+  <div class="six columns">
+    <div class="row">
+      <div class="six columns">
+        <div class="panel  radius">
+          <center>
+            <h2>  {{ n_pages  }}  </h2>
+            Page{{n_posts|pluralize}}
+          </center>
+        </div>
+      </div>
+      <div class="six columns end">
+        <div class="panel radius">
+          <center>
+            <h2> {{ n_posts  }} </h2>
+            Post{{n_posts|pluralize}}
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="six columns end">
+    <h4>Recent Comments</h4>
+    <p>
+      {% for comment in comments %}
+      <blockquote>
+        {{comment.comment|safe}}
+        <cite>{% if comment.user_name  %}{{comment.user_name}}{% endif  %}
+          in {{ comment.content_object.title}}</cite>
+      </blockquote>
+      {% endfor %}
+
+      {% comment %}
+      {% for comment in comments  %}
+      {% endfor %}
+      {% endcomment %}
+    </p>
+  </div>
+  <div class="row">
+    <div class="six columns panel">
+      <div class="six columns">
+        <a href="{% url oriel_index %}">
+          <img src="{% media_url 'img/gallery.png' %}" alt="" height="50"
+          width="50"/>
+          <cite> Oriel  </cite>
+        </a>
+      </div>
+      <div class="six columns">
+        <a href="{% url index_settings %}">
+          <img src="{% media_url 'img/preferences.png' %}" alt="" height="50"
+          width="50"/>
+          <cite> Settings  </cite>
+        </a>
+      </div>
+    </div>
+    <div class="six columns panel">
+      <div class="six columns">
+        <a href="{% url brasil_blog_index %}">
+          <img src="{% media_url 'img/blog.png'%}" alt="" height="50"
+          width="50" />
+          <cite> Brasil  </cite>
+        </a>
+      </div>
+      <div class="six columns">
+        <a href="{% url cheryl_list %}">
+          <img src="{% media_url 'img/page.png' %}" alt="" height="50"
+          width="50"/>
+          <cite> Cheryl  </cite>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="twelve columns panel">
+      <center>
+      	<h4>
+      		<a href="/skylark/help/">Help</a>
+      	</h4>
+      </center>
+    </div>
+  </div>
+</div>
+{% endblock  %}

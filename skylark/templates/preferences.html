@@ -1,0 +1,18 @@
+{% extends "base.html"  %}
+{% load media %}
+{% block content  %}
+<div class="eleven columns">
+    <div class="six columns centered">
+      <a href="{% url settings %}" class="secondary large button">
+        <img src="{% media_url 'img/blog/seeitoninternet.png'%}" width="100"
+        heigth="100" alt="" />
+      </a>
+      <a href="{% url settings_blog %}" class="secondary large button">
+        <img src="{% media_url 'img/blog.png'%}" alt="" width="100" heigth="100" />
+      </a>
+      <a href="{% url settings_contact %}" class="secondary large button">
+        <img src="{% media_url 'img/contact.png'%}" alt="" width="100" heigth="100" />
+      </a>
+    </div>
+</div>
+{% endblock %}

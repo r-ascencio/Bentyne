@@ -1,0 +1,22 @@
+{% load media %}
+{% include_media 'galleria.js' %}
+{% include_media 'galleria-theme.js' %}
+{% include_media 'galleria-theme.css' %}
+
+<style type="text/css">
+  #galleria{ width: 700px; height: 400px; background: #000 }
+</style>
+<div id="galleria">
+        {% for picture in pictures %}
+                <img src="{{picture.file.url}}">
+        {% endfor %}
+
+        <p>
+        </p>
+</div>
+<script>
+  var jQuery = $.noConflict(true);
+</script>
+<script>
+  Galleria.run('#galleria');
+</script>

@@ -1,0 +1,21 @@
+{% load media  %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% include_media 'foundation.css'  %}
+  </head>
+  <body>
+    <div class="row">
+      <div class="ten colums centered">
+        <form method="POST">
+          {% csrf_token  %}
+          {{form}}
+          <input type="submit" name="" id="" value="Shit man..." />
+        </form>
+      </div>
+    </div>
+
+  </body>
+</html>

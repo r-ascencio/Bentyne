@@ -1,0 +1,77 @@
+{% if post %}
+<hr />
+{% load media %}
+{% include_media 'jquery.js' %}
+{% include_media 'redactor.js' %}
+{% include_media 'redactor.css' %}
+{% load comments %}
+{% get_comment_list for post as comments %}
+{% for comment in comments %}
+<blockquote>
+  {{comment.comment|safe}}
+  <hr/>
+  <cite>{% if comment.user_name  %}autor: <a href="mailto:{{comment.email}}">{{comment.user_name}}</a>{% endif  %}
+    in {{ comment.content_object.title}}</cite>
+</blockquote>
+{% endfor %}
+{% get_comment_form for post as form %}
+<div class="container">
+  <div class="row">
+      <form action="{%  comment_form_target %}" method="post">
+        <fieldset>
+          {% csrf_token %}
+          <div class="control-group">
+            <label>
+              Name:
+            </label>
+            {{form.name}}
+          </div>
+          <hr/>
+          <div class="control-group">
+            <label>
+              Email:
+            </label>
+            {{form.email}}
+          </div>
+          <hr/>
+          <div class="control-group">
+            <label>
+              URL:
+            </label>
+            {{form.url}}
+          </div>
+          <hr/>
+          <div class="control-group">
+            <label>
+              Comment:
+            </label>
+            {{ form.comment }}
+          </div>
+          <hr/>
+          <label>
+            Dont fill this if you're human:
+          </label>
+          {{ form.honeypot }}
+          {{ form.content_type }}
+          {{ form.object_pk }}
+          {{ form.timestamp }}
+          {{ form.security_hash }}
+          <hr/>
+          <input type="hidden" name="next" value="{% url brasil_detail post.slug %}" />
+          <input type="submit" value="Add comment" id="id_submit" />
+          <input type="submit" name="submit"
+          value="Post">
+          <input type="submit"
+          name="preview" value="Preview">
+        </fieldset>
+      </form>
+  </div>
+</div>
+<script type="text/javascript">
+      $('#id_comment').redactor()
+</script>
+{% else %}
+<p>
+  This should be loaded in a blog template
+</p>
+{% endif %}

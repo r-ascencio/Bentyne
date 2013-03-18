@@ -1,0 +1,39 @@
+{% extends "base.html"  %}
+{% load media %}
+{% include_media 'redactor.js'  %}
+{% include_media 'redactor.css'  %}
+{% block content  %}
+<div class="ten columns">
+  <div class="row">
+    {% for content in contents  %}
+    <div class="four columns panel">
+      <div class="row">
+        <div class="ten columns centered">
+          {{content.title|truncatewords_html:4}}
+        </div>
+      </div>
+      <img src="{% media_url 'img/pages/section.png'  %}" alt="" />
+      <div class="ten columns centered">
+        <div href="#" class="small button dropdown">
+          Do
+          <ul>
+            <li><a href="/skylark/cheryl/content/{{content.id}}/">Edit</a></li>
+            <li class="divider"></li>
+            <li><a href="/skylark/cheryl/content/delete/{{content.id}}/">Delete</a></li>
+            <!--<li class="divider"></li>-->
+            <!--<li><a href="/skylark/cheryl/content//{{content.id}}/">Dropdown Item</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% include "cheryl/sidebar.html"  %}
+{% endblock  %}
+{% block scripts %}
+<script type="text/javascript">
+  $(document).foundationButtons();
+</script>
+{% include "redactorbody.html" %}
+{% endblock %}

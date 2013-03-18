@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load media  %}
+{% block files  %}
+{% include_media 'jqtree.js'  %}
+{% include_media 'jqtree.css'  %}
+{% include "cheryl/modals.js.html"  %}
+{% endblock  %}
+{% block content %}
+{% include "cheryl/modals.html"  %}
+<div class="ten columns">
+  <div class="row" id="pages">
+    <fieldset>
+      <legend> Pages </legend>
+      <div id="test">
+      </div>
+    </fieldset>
+  </div>
+</div>
+{% include "cheryl/sidebar.html"  %}
+{% endblock %}
+{% block scripts  %}
+<script type="text/javascript">
+  $(document).foundationTopBar();
+</script>
+{% include "cheryl/nodes.js.html"  %}
+{% endblock  %}

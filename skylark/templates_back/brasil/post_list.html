@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    {% for post in post_list %}
+      <h1>
+        {{ post.title }}
+      </h1>
+    <p>
+      {{post.body}}
+    </p>
+    <div class="modify">
+      <a href="/brasil/delete/{{ post.id }}"> Delete </a>
+      <a href="/brasil/{{ post.id }}"> Modify </a>
+    </div>
+    {% endfor %}
+  </body>
+</html>

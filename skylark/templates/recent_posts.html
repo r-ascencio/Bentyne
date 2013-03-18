@@ -1,0 +1,4 @@
+  {% for post in posts %}
+  {{post.created_date|date:"SHORT_DATE_FORMAT"}}
+  {{post.body|escape|truncatewords:5}}
+  {% endpost %}

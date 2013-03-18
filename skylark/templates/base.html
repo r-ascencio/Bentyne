@@ -1,0 +1,60 @@
+{% load media %}
+<!DOCTYPE HTML>
+<!-- A wannabe Admin for Bentyne CMS -->
+<!-- prototype using bootstrap -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> {{ SiteName   }} </title>
+    {% include_media 'main.js'  %}
+    {% block files  %}
+    {% endblock  %}
+    {% include_media 'foundation.css'  %}
+  </head>
+  <body >
+    {% include "navbar.html" %}
+    <div class="container">
+      <div class="row">
+        {% include "navleft.html"  %}
+        <div class="ten columns end">
+          <div class="row">
+              {% block content  %}
+              {% comment %}
+              {% load comments %}
+
+              {% get_comment_list for post as cmt_list %}
+              {% for comment in cmt_list %}
+              <div class="comment">
+                <p><a href="{{ comment.user_url }}">{{ comment.user_name }}</a> - {{ comment.submit_date }}</p>
+                {{ comment.comment }}
+              </div>
+              {% endfor %}
+
+              <div class="comment_form">
+                {% get_comment_form for post as c %}
+                <form action="{% comment_form_target %}" method="POST">
+                  {% csrf_token %}
+                  {{c}}
+                  <tr>
+                    <td colspan="2">
+                      <input type="submit" name="submit" value="Post">
+                      <input type="submit" name="preview" value="Preview">
+                    </td>
+                  </tr>
+                </form>
+              </div>
+              {% endcomment %}
+              {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- body -->
+    {% block scripts %}
+    <script type="text/javascript">
+      $(document).foundationTopBar();
+      </script>
+      {% endblock %}
+    </body>
+  </html>
+

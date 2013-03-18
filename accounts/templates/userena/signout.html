@@ -1,0 +1,17 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Signed out" %}{% endblock %}
+{% block content_title %}<h2>{% trans "You have been signed out" %}.</h2>{% endblock %}
+{% block content %}
+<a href="/skylark/">
+  <button class="button secondary">
+    Login again
+  </button>
+</a>
+<a href="/">
+  <button class="button secondary">
+    Go to site
+  </button>
+</a>
+{% endblock %}

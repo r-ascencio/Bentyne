@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    {% load media %}
+    <meta charset="UTF-8">
+    <title> Search result </title>
+    {% include_media 'jquery.js' %}
+    {% include_media 'foundation.css'%}
+    {% include_media 'foundation.js' %}
+        <script type="text/javascript">
+            $(document).ready( function(){
+                    $(document).foundationCustomForms();
+                    });
+      </script>
+      <style type="text/css">
+        ul{
+          list-style: none;
+        }
+        ul li{
+          float: left;
+        }
+        ul li:nth-child(even){
+          margin-left: 25px;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h2>Search</h2>
+        <form method="get" action="." class="custom">
+          <div class="row">
+            <div class="row panel">
+              <div class="row">
+                <div class="five columns centered">
+                  <div class="eight mobile-three columns">
+                    {{form.q}}
+                  </div>
+                  <div class="four mobile-one columns">
+                    <input class="postfix button expand" type="submit" value="Search">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="five columns centered">
+                  {{form.models}}
+                </div>
+              </div>
+            </div>
+
+            {% if query %}
+            <div class="row panel">
+              <h3>Results</h3>
+              <hr/>
+              <div class="row">
+                {% for result in page.object_list %}
+                <div class=" four columns end ">
+                  <p>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+                    <blockquote>
+                      {{ result.object.body|safe|truncatewords:10 }}
+                    </blockquote>
+                  </p>
+                </div>
+                {% empty %}
+                <p>No results found.</p>
+                {% endfor %}
+              </div>
+            </div>
+            {% else %}
+            <div class="row panel">
+              <h3>
+                Put something in the Search input.
+              </h3>
+            </div>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </body>
+  </html>

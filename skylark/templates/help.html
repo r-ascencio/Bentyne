@@ -1,0 +1,201 @@
+{% load media %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> Bentyne CMS Help </title>
+    {% include_media 'foundation.css' %}
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <div class="row">
+            <h3>
+              <center>
+                Apps
+              </center>
+            </h3>
+          </div>
+          <hr />
+          <br/>
+          <div class="four columns">
+            <p>
+              <img src="{% media_url 'img/gallery.png' %}" alt="" align="left" />
+              <h2> Oriel </h2>
+              <p> Create awesome Galleries  </p>
+            </p>
+          </div>
+          <div class="four columns">
+            <p>
+              <img src="{% media_url 'img/page.png' %}" alt="" align="left" />
+              <h2> Cheryl </h2>
+              <p> Manage easily the pages  and content of the site  </p>
+            </p>
+          </div>
+          <div class="four columns">
+            <p>
+              <img src="{% media_url 'img/blog.png' %}" alt="" align="left" />
+              <h2> Brasil </h2>
+              <p> Create your blog in a better way.  </p>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="twelve columns">
+          <h3>
+            <center>
+              Enabled tags
+            </center>
+          </h3>
+        </div>
+        <hr />
+
+        <div class="eleven columns centered">
+          <table>
+            <tr>
+              <td> <h4>{ % load bentyne % }</h4>  </td>
+            </tr>
+            <tr>
+              <td> { % content "title of content" % }  </td>
+              <td> Load a defined content or create one if doesn't exists  </td>
+            </tr>
+            <tr>
+              <td> { % tree_menu "parent class"  "has-menu class"  "
+                menu class" % }  </td>
+              <td> Load the complete menu for the site.  </td>
+            </tr>
+            <tr>
+              <td> { % root_menu "menu class" % }  </td>
+              <td> Load the index pages.  </td>
+            </tr>
+            <tr>
+              <td> { % page_menu "menu class" % }  </td>
+              <td> Load the menu for the page.  </td>
+            </tr>
+            <tr>
+              <td> { % site_name  % }  </td>
+              <td> Load the name of the site.  </td>
+            </tr>
+            <tr>
+              <td> { % blog_name  % }  </td>
+              <td> Load the name of the blog.  </td>
+            </tr>
+            <tr>
+              <td> { % blog_description  % }  </td>
+              <td> Load the description of the blog.  </td>
+            </tr>
+            <tr>
+              <td> { % blog_url  % }  </td>
+              <td> Load the url of the blog.  </td>
+            </tr>
+            <tr>
+              <td> { % gallery_show "< gallery name >" % }  </td>
+              <td> Load a Gallery  .  </td>
+            </tr>
+            <tr>
+              <td> { % gallery_grid "< gallery name >" % }  </td>
+              <td> Load a Gallery like a grid .  </td>
+            </tr>
+            <tr>
+              <td> { % gallery_slider "< gallery name >" "< gallery theme >" % }  </td>
+              <td> Load a Gallery like a slider .  </td>
+            </tr>
+            <tr>
+              <td> { % posted_lately "< number of posts >" % }  </td>
+              <td> Load a number of posts.  </td>
+            </tr>
+            <tr>
+              <td> <h4>{ % load media % }</h4>  </td>
+              <td><p> Allows to load the integrated media in the project  </p>  </td>
+            </tr>
+            <tr>
+              <td> { % include_media 'foundation.css' % }  </td>
+              <td> Insert foundation css framework for the template  </td>
+            </tr>
+            <tr>
+              <td> { % include_media 'foundation.js' % }  </td>
+              <td> Insert foundation javascript framework for the template  </td>
+            </tr>
+            <tr>
+              <td>
+                { % include_media 'readactor.js' % }
+                <br />
+                { % include_media 'readactor.css' % }
+              </td>
+              <td> Insert foundation javascript framework for the template  </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <div class="row">
+            <h3>
+              <center>
+                Themes
+              </center>
+            </h3>
+          </div>
+          <hr />
+          <br/>
+          <div class="row">
+            <div class="ten columns centered">
+              <blockquote>
+                Creating a theme for your CMS is even easier now.
+                You just have to define where is going to be loaded your
+                content, and chose your theme.
+              </blockquote>
+            </div>
+            <div class="eleven columns centered">
+              <p>
+                <img src="/media/img/theme1.png" alt="" align="left" />
+                For a basic theme you need define these files and dirs:
+                <br/>
+                <h4>
+                  default.html <small>(required)</small>
+                </h4>
+                <blockquote>
+                  This is the template that we're going to use if you haven't definded one yet. 
+                     </blockquote>
+                <h4> blog_index.html  <small>(required)</small></h4>
+                <blockquote>
+                  This is the template that we use in the blog_index
+                </blockquote>
+                <img src="/media/img/theme2.png" alt="" align="right" />
+                <h4>
+                  blog_detail.html <small>(required)</small>
+                </h4>
+                <blockquote>
+                  This is the template that we're going to use for each blog on the post.
+                </blockquote>
+                <h4>
+                  404.html
+                </h4>
+                <blockquote>
+                  Page not Found. 
+                </blockquote>
+                <h4>
+                  500.html
+                </h4>
+                <blockquote>
+                  Error on the server.
+                </blockquote>
+                <h4>
+                  <"theme_name">/static/
+                </h4>
+                <blockquote>
+                  In the directory is where you have to save the media file that you use 
+                  on your theme.
+                </blockquote>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+{% extends "base.html"   %}
+{% block files %}
+{% load media  %}
+{% include_media 'redactor.js'  %}
+{% include_media 'redactor.css'  %}
+{% endblock  %}
+{% block content  %}
+<div class="ten columns">
+  <div class="row">
+    <fieldset>
+      <legend> Add post </legend>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="row collapse">
+            {% if form.title.errors  %}
+            {% for error in form.title.errors%}
+            <div class="alert-box alert">
+              Title: {{ error }}
+            </div>
+            {% endfor  %}
+            {% endif  %}
+            <div class="two mobile-one columns">
+              <span class="prefix">Tittle</span>
+            </div>
+            <div class="ten mobile-three columns">
+              <!--<input type="text" />-->
+              {{form.title}}
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="nine columns centered">
+            <div class="six columns">
+              {% if form.published.errors  %}
+              {% for error in form.published.errors%}
+              <span class="alert label">
+                {{ error }}
+              </span>
+              {% endfor  %}
+              {% endif  %}
+              <div class="row">
+                <div class="row collapse">
+                  <div class="five columns">
+                    Publish:
+                  </div>
+                  <div class="two columns end">
+                    <span class="prefix">
+                      {{form.published}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="six columns centered">
+              {% if form.autor.errors  %}
+              {% for error in form.autor.errors%}
+              <div class="alert label">
+                {{ error }}
+              </div>
+              {% endfor  %}
+              <br/>
+              <br/>
+              {% endif  %}
+              <div class="row">
+                <div class="row collapse">
+                  <div class="five columns">
+                    Comments:
+                  </div>
+                  <div class="two columns end">
+                    <span class="prefix">
+                      {{form.enable_comments}}
+                    </span>
+                  </div>
+                  <!--<input type="text" />-->
+                  <br />
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+          {% if form.body.errors  %}
+          {% for error in form.body.errors%}
+          <div class="alert-box alert">
+            {{ error }}
+          </div>
+          {% endfor  %}
+          {% endif  %}
+          {{form.body}}
+        </div>
+        <br />
+        <div class="row">
+          {% if form.tags.errors  %}
+          {% for error in form.tags.errors%}
+          <div class="alert-box alert">
+            {{ error }}
+          </div>
+          {% endfor  %}
+          {% endif  %}
+          <div class="row collapse">
+            <div class="two mobile-one columns">
+              <span class="prefix">Tags</span>
+            </div>
+            <div class="ten mobile-three columns">
+              {{form.tags}}
+            </div>
+          </div>
+        </div>
+        <div class="two columns offset-by-ten">
+          <input type="submit" value="Save" class="button success" />
+          <br/>
+          <br/>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+</div>
+{% include "brasil/sidebar.html"  %}
+{% endblock  %}
+{% block scripts %}
+<script type="text/javascript">
+  $(document).foundationTopBar();
+  $(document).foundationAlerts();
+  $('textarea').autosize();
+</script>
+{% comment %}
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#id_body').redactor({ wym: true });
+      });
+$('form').submit(function(){
+    var editor = $('#id_body').getEditor().html();
+    $('#id_body').val(editor);
+    })
+</script>
+{% endcomment %}
+{% include "redactorbody.html" %}
+{% endblock %}

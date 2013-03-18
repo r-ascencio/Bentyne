@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+{% load media %}
+{% load bentyne %}
+{% block files %}
+{% endblock %}
+{% block content %}
+<div class="ten columns">
+  <h1>{{gallery.name}}</h1>
+  <h4>
+    <a href="/skylark/oriel/{{gallery.slug}}/">
+      edit gallery
+    </a>
+  </h4>
+    <h2> gallery_grid tag </h2>
+    {% gallery_grid gallery.name %}
+    <hr/>
+    <h2> gallery_show tag  </h2>
+    {% gallery_show gallery.name %}
+    <hr />
+</div>
+{% endblock %}

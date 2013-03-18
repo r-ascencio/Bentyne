@@ -1,0 +1,73 @@
+{% load i18n %}
+{% load media %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> Bentyne Login </title>
+  <link rel="stylesheet" href="/static/login/css/style.css" />
+  <!--Slider-in icons-->
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $(".username").focus(function() {
+      $(".user-icon").css("left","-48px");
+    });
+    $(".username").blur(function() {
+      $(".user-icon").css("left","0px");
+    });
+
+    $(".password").focus(function() {
+      $(".pass-icon").css("left","-48px");
+    });
+    $(".password").blur(function() {
+      $(".pass-icon").css("left","0px");
+    });
+  });
+  </script>
+  {% include_media 'jquery.js' %}
+</head>
+<body>
+  <div id="wrapper">
+    <div class="user-icon"></div>
+    <div class="pass-icon"></div>
+  <form action="" method="post" name="login-form" class="login-form">
+    <div class="header">
+      <h1>Login Bentyne</h1>
+      <span>Fill the form below to login to Bentyne</span>
+    </div>
+    {% csrf_token %}
+    <div class="content">
+      {% comment %}
+        {{ form.non_field_errors }}
+        {% if field.name == 'remember_me' %}
+        <p class="checkbox">
+          <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+        </p>
+        {% else %}
+        <p>
+          {{ field.label_tag }}
+          {{ field }}
+        </p>
+        {% endif %}
+        {% endfor %}
+      {% endcomment %}
+      {% for field in form %}
+      {{ field.errors }}
+      {% endfor %}
+      <input type="text" placeholder="Username" class="input username"
+      name="identification" id="id_identifaction" value=""/>
+      <input type="password" placeholder="Password" class="input password"
+      name="password" value=""
+      id="id_password"/>
+    </div>
+    <div class="footer">
+      <input type="submit" value="{% trans "Signin" %}" class="button" />
+      <p class="forgot-password"><a href='{% url userena_password_reset %}' title="{% trans "Forgot your password?" %}">{% trans "Forgot your password?" %}</a></p>
+      {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+    </div>
+  </form>
+  </div>
+  <div class="gradient"></div>
+</body>
+</html>
+

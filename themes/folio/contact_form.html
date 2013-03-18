@@ -1,0 +1,26 @@
+{% extends "base-folio.html" %}
+{% load bentyne %}
+{% block content %}
+<div class="body">
+  <div class="body_resize">
+    <div class="right">
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in contact_form %}
+        {{field.errors}}
+        {{field.label}}
+        <hr/>
+        {{field}}
+        <hr/>
+        {% endfor %}
+        <input type="submit" value="Send" />
+      </form>
+      <div class="bg"></div>
+    </div>
+    <div class="left">
+      {% content "contact" %}
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+{% endblock %}

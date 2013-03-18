@@ -1,0 +1,37 @@
+{% load media %}
+<div class="two columns float  right">
+  <style type="text/css">
+    .second-item{
+    position: fixed;
+    }
+  </style>
+  <div class="second-item">
+    <a href="/skylark/cheryl/content/">
+      <img src="{% media_url 'img/pages/see_the_site.png' %}" alt="" />
+      <hr />
+      <center>
+        <p>
+          Contents
+        </p>
+      </center>
+    </a>
+    <a href="/skylark/cheryl/add/" class="addPage">
+      <img src="{% media_url 'img/pages/new_page.png' %}" alt="" />
+      <hr/>
+      <center>
+        <p>
+          Add page
+        </p>
+      </center>
+    </a>
+    <a href="/skylark/cheryl/content/add/" id="addSection">
+      <img src="{% media_url 'img/pages/new_section.png' %}" alt="" />
+      <hr />
+      <center>
+        <p>
+          Add content
+        </p>
+      </a>
+    </center>
+  </div>
+</div>

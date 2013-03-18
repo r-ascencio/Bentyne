@@ -1,0 +1,14 @@
+{% load media %}
+{% include_media 'colorbox.css' %}
+{% include_media 'colorbox.js' %}
+
+{% for picture in pictures %}
+<a class='gallery' href='{{ picture.file.url }}'
+	title="{% if picture.name %} {{picture.name}} {% else %} {{gallery.title}} {% endif %}">
+		<img src="{{picture.file.url}}" width="200" height="200"/>
+</a>
+{% endfor %}
+
+<script>
+    jQuery('a.gallery').colorbox({ opacity:0.5 , rel:'{{gallery.title}}' });
+</script>

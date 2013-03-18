@@ -1,0 +1,46 @@
+{% load comments %}
+{% get_comment_list for post as comments %}
+{% for comment in comments %}
+<blockquote>
+  {{comment.comment}}
+  <hr/>
+  <cite>{% if comment.user_name  %}autor: {{comment.user_name}}{% endif  %}
+    in {{ comment.content_object.title}}</cite>
+</blockquote>
+{% endfor %}
+{% get_comment_form for post as form %}
+<div>
+  <form action="{%  comment_form_target %}" method="post">
+    {% csrf_token %}
+    <p> Comment: </p>
+    <p>
+      {{ form.comment }}
+    </p>
+    <p>Dont fill this if you're human:</p>
+    <p>
+      {{ form.honeypot }}
+    </p>
+    <p>
+      {{ form.content_type }}
+    </p>
+    <p>
+      {{ form.object_pk }}
+    </p>
+    <p>
+      {{ form.timestamp }}
+    </p>
+    <p>
+      {{ form.security_hash }}
+    </p>
+    <input type="hidden" name="next" value="{% url brasil_detail post.slug %}" />
+    <input type="submit" value="Add comment" id="id_submit" />
+    <tr>
+      <td colspan="2">
+        <input type="submit" name="submit"
+        value="Post">
+        <input type="submit"
+        name="preview" value="Preview">
+      </td>
+    </tr>
+  </form>
+</div>

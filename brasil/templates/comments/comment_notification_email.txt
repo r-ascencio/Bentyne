@@ -1,0 +1,9 @@
+
+A comment posted in {{content_object}}
+Submitted on {{ comment.submit_date }}.
+
+Commenter's name: {{ comment.name }}
+Commenter's email: {{ comment.email }}
+Commenter's URL: {{ comment.user_url }}
+
+{{ comment.comment }}

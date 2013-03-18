@@ -1,0 +1,49 @@
+{% extends "base.html"  %}
+{% load media %}
+{% block files %}
+{% include_media 'redactor.js'  %}
+{% include_media 'redactor.css'  %}
+{% endblock  %}
+{% block content %}
+<div class="ten columns">
+  <fieldset>
+    {%for error in form.errors%}
+    {{error}}
+    {%endfor%}
+    <legend> Add content  </legend>
+    <form method="POST">
+      {% csrf_token  %}
+      <div class="row">
+        <div class="eleven columns centered">
+          <div class="row collapse">
+            <div class="three mobile-three columns">
+              <span class="prefix">Title</span>
+            </div>
+            <div class="nine mobile-three columns">
+              {{form.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eleven columns centered">
+          <div class="row collapse">
+            <div class="three mobile-three columns">
+              <span class="prefix"> Page  </span>
+            </div>
+            <div class="nine prefix mobile-three columns panel">
+              {{form.page}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{form.body}}
+      <input type="submit" name="" id="" value="Save" />
+    </form>
+  </fieldset>
+</div>
+{% include "cheryl/sidebar.html" %}
+{% endblock %}
+{% block scripts %}
+{% include "redactorbody.html" %}
+{% endblock %}

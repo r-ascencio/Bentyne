@@ -1,0 +1,72 @@
+{% extends "base.html"  %}
+{% block  content %}
+<div class="ten columns">
+  <div class="row">
+    <fieldset>
+      <legend> Edit posts </legend>
+      <div class="row">
+        {%if posts%}
+        <div class="ten columns centered">
+          <table>
+            {% for post in posts %}
+            <tr>
+              <td>
+                <a href="/skylark/brasil/{{post.id}}/">
+                  <div class="three columns">{{post.title}}</div></a>
+              </td>
+              <td>
+                <div class="two columns">{{post.autor}}</div>
+              </td>
+              <td>
+                <div class="two columns">
+                  {{post.creation_date|date:"SHORT_DATE_FORMAT"}}
+                </div>
+              </td>
+              <td>
+                <div class="two columns">
+                  <a href="/skylark/brasil/delete/{{post.id}}/">
+                    Delete
+                  </a>
+                </div>
+              </td>
+              <td>
+                <div class="two columns">
+                  <a href="/skylark/brasil/toggle/{{post.id}}/">
+                    {% if post.published %}
+                    Draft
+                    {% else  %}
+                    Publish
+                    {% endif %}
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% endfor  %}
+          </table>
+        </div>
+        {% else  %}
+        <div class="five columns centered">
+          <h1> No post in brasil </h1>
+        </div>
+        <a href="/skylark/brasil/">
+          <span class="button secondary"> <-- Back to add one  </label>
+        </a>
+        {% endif %}
+      </div>
+    </fieldset>
+  </div>
+</div>
+{% include "brasil/sidebar.html"  %}
+{% endblock  %}
+{% block scripts %}
+<script type="text/javascript">
+  $(document).foundationTopBar();
+  $(document).foundationAlerts();
+  $('textarea').autosize();
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#content').redactor({ wym: true });
+        });
+</script>
+{% endblock %}

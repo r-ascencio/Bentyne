@@ -1,0 +1,35 @@
+{% extends "base-folio.html" %}
+{% load bentyne %}
+{% block content %}
+<div class="body">
+  <div class="body_resize">
+    <div class="right">
+      <div class="row">
+        <div class="five columns">
+          <h2>
+            {{post.title}}
+          </h2>
+        </div>
+        <div class="four columns">
+          <h4>
+            {{post.autor}} in
+            {{ post.creation_date|date:"SHORT_DATE_FORMAT" }}
+          </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+            {{ post.body|safe }}
+            {% include "load_comments" %}
+        </div>
+      </div>
+      <div class="bg"></div>
+    </div>
+    <div class="left">
+      <h2> {% blog_name  %}  </h2>
+      {% posted_lately "3" %}
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+{% endblock %}

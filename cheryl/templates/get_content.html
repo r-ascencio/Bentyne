@@ -1,0 +1,66 @@
+<span data-content_id="{{content.id}}" id="content-{{content.id}}" class="{% if request.user.is_authenticated %}editable-{{content.id}}{% endif %}">
+  {% autoescape on %}
+  {{content.body|safe}}
+  {% endautoescape %}
+</span>
+{% if request.user.is_authenticated %}
+{% load media %}
+{% include_media 'raptor.js' %}
+<script type="text/javascript">
+  $.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                     break;
+                 }
+             }
+         }
+         return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     }
+});
+  $('.editable-{{content.id}}').editor({
+    plugins: {
+      dock: { // Dock specific plugin options
+        docked: true, // Start the editor already docked
+      },
+     saveJson: {
+       /**
+           * True if you want a message to be displayed to the user on save
+             */
+       showResponse: true,
+    /**
+        * Attribute name that contains the content's ID.
+          * Instead of what is used here, you may also provide a string or a
+          function.
+            * The function would be called with the editing element as the first
+            argument,
+              * and the saveJson plugin as the context (this).
+                */
+    id: {
+      attr: 'data-content_id',
+    },
+    /**
+        * String to be used as the editing element's content key.
+          * e.g. $_POST['raptor-content']
+            */
+    postName: 'raptor-content',
+    ajax: {
+      url: '{% url inlineedit %}'
+    }
+     }
+    }
+  });
+</script>
+{% endif %}

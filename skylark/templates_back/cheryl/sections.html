@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>
+  <a href="/cheryl/section/{{section.title}}">
+      {{section.title}}
+   </a>
+  </h1>
+  {% for page in pages %}
+  <h1>
+      {{page.title}} <-- page
+  </h1>
+  {% endfor  %}
+</body>
+</html>

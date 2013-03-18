@@ -1,0 +1,9 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#id_body').redactor({ wym: true });
+    });
+    $('form').submit(function(){
+      var editor = $('#id_body').getEditor().html();
+      $('#id_body').val(editor);
+      })
+</script>
