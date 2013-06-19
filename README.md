@@ -25,5 +25,5 @@ Just post your stuff whit a rich content editor, use your files.
 Brasil
 ------
 
-Manage your pages easily, divide them by sections and just put that
-shits a name and edit them **inline**
+Manage your pages easily, divide them by sections and just put them
+a name and edit them inline.
